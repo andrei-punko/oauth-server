@@ -1,0 +1,42 @@
+buildscript {
+    ext {
+        spring_boot_version = '2.2.5.RELEASE'
+        spring_boot_gradle_plugin_version = spring_boot_version
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_gradle_plugin_version"
+    }
+}
+
+allprojects {
+    apply from: "${rootProject.projectDir}/repositories.gradle"
+    apply plugin: 'java'
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
+    implementation "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:$spring_boot_version"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$spring_boot_version"
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
+
+    runtimeOnly 'com.h2database:h2:1.4.197'
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
+}
+
+springBoot {
+    mainClassName = "by.andd3dfx.auth.AuthServerApp"
+}
