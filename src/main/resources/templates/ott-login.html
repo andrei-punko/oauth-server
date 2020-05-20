@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Log In</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/ott.css}" >
+</head>
+<body>
+
+<div class="page plans plans--2-total plans--on-demand " aria-hidden="false">
+    <header class="page__header">
+        <div class="page__header--inner">
+            <div class="logo">
+                <div aria-label="logo" role="img" class="logo--inner">
+                    <img th:if="${nodeName == 'disney'}" class="logo__image" style="height: 60px"
+                         src="/img/disney.svg" alt="OTT"
+                         role="presentation">
+                    <img th:if="${nodeName == 'hulu'}" class="logo__image" style="height: 60px"
+                         src="/img/hulu.svg" alt="OTT"
+                         role="presentation">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page__body--wrapper">
+        <div class="page__body">
+            <div class="form account">
+                <form method="POST" th:action="@{/login}">
+                    <div class="panel" style="max-width: 280px;">
+                        <h3 class="plan__title">Log In</h3>
+                        <div class="fieldset ">
+                            <div class="label"><label for="username" class="label__input">LOGIN</label></div>
+                            <div class="field cu-email">
+                                <div class="input__wrapper"><input type="text" id="username"
+                                                                   class="input__text" autofocus="autofocus"
+                                                                   aria-describedby="username-error" maxlength="254"
+                                                                   name="username" value=""></div>
+                                <span th:if="${loginError}">
+                                    <div class="errors">Wrong user or password</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="fieldset ">
+                            <div class="label"><label for="password" class="label__input">PASSWORD</label></div>
+                            <div class="field cu-password">
+                                <div class="input__wrapper"><input type="password" id="password"
+                                                                   class="input__text"
+                                                                   aria-describedby="password-error"
+                                                                   name="password" value=""></div>
+                            </div>
+                        </div>
+                        <button class="button" aria-disabled="true" type="submit">LOG IN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

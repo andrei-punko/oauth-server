@@ -1,0 +1,42 @@
+auth:
+  profile: ott
+
+server:
+  port: 9090
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: WARN
+    org.springframework.security: INFO
+
+security:
+  jwt:
+    client-id: entitlements
+    client-secret: ${auth.profile}
+    expiration-mins: 1440
+    grant-types: password,refresh_token,authorization_code
+    resource-ids: users,subscriptions
+    scopes: read
+    redirect-uris: http://localhost
+    cors: http://localhost:3000,http://localhost:5000
+  security-realm: Spring Boot JWT Example Realm
+  signing-key: MaYzkSjmkzPC57L
+
+script:
+  data:
+    filename: ${auth.profile}.sql
+
+spring:
+  artemis:
+    embedded:
+      enabled: false
+
+  thymeleaf:
+    cache: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics

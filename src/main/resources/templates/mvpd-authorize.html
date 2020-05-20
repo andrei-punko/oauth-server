@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Authorize</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mvpd.css}" >
+</head>
+<body>
+
+<div id="login-body" class="loginish dark-background puree-v2">
+    <div class="mbr-desktop-hd">
+    <span class="column" id="verizon-logo-container">
+        <img th:if="${nodeName == 'verizon'}" src="/img/verizon.png" alt="Mvpd" class="logo" height="72">
+        <img th:if="${nodeName == 'comcast'}" src="/img/comcast.png" alt="Mvpd" class="logo" height="72">
+    </span>
+    </div>
+
+    <div class="login-box-container">
+        <div class="login-box center" style="min-height: 300px;">
+            <div id="account-attributes-challenge">
+                <h1 class="txt-align-center header-text">Please&nbsp;Confirm</h1>
+                <p class="m-t-24px tos txt-align-center oneid-page-text">
+                    Do you authorize "<span th:text="${authorizationRequest.clientId}"/>" at "<span th:text="${authorizationRequest.redirectUri}"/>" to access your protected resources
+                    with scope <span th:text="${authorizationRequest.scope}"/>?
+                </p>
+                <div class="cta-container m-t-24px">
+                    <form id="confirmationForm" name="confirmationForm" th:action="@{/oauth/authorize}" method="post">
+                        <input name="user_oauth_approval" value="true" type="hidden" />
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <button type="submit" class="pure-button puree-button-primary">Approve</button>
+                    </form>
+                </div>
+                <div class="cta-container m-t-12px">
+                    <form id="denyForm" name="denyForm" th:action="@{/oauth/authorize}" method="post">
+                        <input name="user_oauth_approval" value="false" type="hidden" />
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <button type="submit" class="pure-button puree-button-secondary">Deny</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-bg-outer">
+        <div class="login-bg-inner">
+            <div id="login-ad-rich"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
