@@ -6,16 +6,24 @@
  * JSON Web Token go to https://jwt.io/ to decode your generated token and learn more
  * H2 Database Engine - used for rapid prototyping and development, but not suitable for production at least in most cases. Go to www.h2database.com to learn more
 
+## How to build:
+    ./gradlew build
+
+## How to build Docker image with application inside:
+    docker build ./ -t oauth-service-app
+
 ## To run the application
 
 ```bash
-./gradlew build
 java -jar ./build/libs/auth-server-0.1-SNAPSHOT.jar --auth.profile=mvpd
 java -jar ./build/libs/auth-server-0.1-SNAPSHOT.jar --auth.profile=ott
 ```
 
 Or import the project into your IDE and run `AuthServerApplication` from there.
 Application starting with auth.profile=ott by default
+
+Or use docker compose:  
+`docker-compose up`
 
 ## To test the application
 
@@ -27,7 +35,7 @@ Application starting with auth.profile=ott by default
 
 ### Authorize using OTT login form
 
-    http://localhost:9090/oauth/authorize?client_id=entitlements&response_type=code&redirect_uri=http://localhost:9191/x&node-name=hulu
+Use link: http://localhost:9090/oauth/authorize?client_id=entitlements&response_type=code&redirect_uri=http://localhost:9191/x&node-name=hulu
 
 Put `bob/ott` login/password pair into form and click `Approve`
 
