@@ -1,10 +1,10 @@
 
-# An example of Spring Boot application for securing a REST API with JSON Web Token (JWT)
+# Spring Boot app for securing a REST API with JSON Web Token (JWT)
 
 ## Main building blocks
- * Spring Boot 2.0.9.RELEASE go to http://docs.spring.io/spring-boot/docs/2.0.9.RELEASE/reference/htmlsingle/ to learn more about spring boot
- * JSON Web Token go to https://jwt.io/ to decode your generated token and learn more
- * H2 Database Engine - used for rapid prototyping and development, but not suitable for production at least in most cases. Go to www.h2database.com to learn more
+ * Spring Boot
+ * JSON Web Token (go to https://jwt.io/ to decode your generated token and learn more)
+ * H2 Database Engine - used for rapid prototyping and development, but not suitable for production at least in most cases. Go to http://h2database.com to learn more
 
 ## How to build:
     ./gradlew build
@@ -20,14 +20,14 @@ java -jar ./build/libs/auth-server-0.1-SNAPSHOT.jar --auth.profile=ott
 ```
 
 Or import the project into your IDE and run `AuthServerApplication` from there.
-Application starting with auth.profile=ott by default
+Application starting with `auth.profile=ott` by default
 
 Or use docker compose:  
 `docker-compose up`
 
 ## To test the application
 
-### First you will need the following basic pieces of information:
+### Firstly, you will need the following basic pieces of information:
 
  * Client: `entitlements`
  * Secret: `ott` (or `mvpd` - value of `auth.profile` param used here)

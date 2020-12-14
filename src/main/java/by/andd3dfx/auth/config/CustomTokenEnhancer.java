@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomTokenEnhancer implements TokenEnhancer {
+
     @Autowired
     private UserRepository userRepository;
 

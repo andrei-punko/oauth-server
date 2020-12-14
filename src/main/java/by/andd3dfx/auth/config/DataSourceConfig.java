@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "by.andd3dfx.auth.repository")
 public class DataSourceConfig {
+
     @Value("${script.data.filename}")
     private String dataFilename;
 

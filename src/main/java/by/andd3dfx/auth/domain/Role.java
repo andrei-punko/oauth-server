@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="app_role")
 public class Role {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,6 @@ public class Role {
 
     @Column(name="description")
     private String description;
-
 
     public Long getId() {
         return id;

@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Controller
 @SessionAttributes("authorizationRequest")
 public class MainController {
+
     private Map<Object, String> nodeMap = new ConcurrentHashMap<>();
 
     public void setNode(String node) {
@@ -48,11 +49,11 @@ public class MainController {
     }
 
     private String getPrefix(Model model) {
-        String node = getNode();
-        model.addAttribute("nodeName", node);
+        model.addAttribute("nodeName", getNode());
         if (authProfile.equals("mvpd")) {
             return "mvpd-";
-        } else if (authProfile.equals("ott")) {
+        }
+        if (authProfile.equals("ott")) {
             return "ott-";
         }
         return "";

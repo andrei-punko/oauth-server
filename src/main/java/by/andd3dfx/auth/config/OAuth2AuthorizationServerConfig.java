@@ -176,6 +176,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     private static class PrivateOAuth2RequestFactory extends DefaultOAuth2RequestFactory {
+
         public static DefaultOAuth2RequestFactory getOAuth2RequestFactory(MainController mainController, AuthorizationEndpoint authorizationEndpoint) {
             try {
                 Method method = AbstractEndpoint.class.getDeclaredMethod("getClientDetailsService");
