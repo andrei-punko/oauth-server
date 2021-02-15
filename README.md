@@ -1,5 +1,6 @@
 
 # Spring Boot app for securing a REST API with JSON Web Token (JWT)
+![Java CI with Gradle](https://github.com/andrei-punko/oauth-server/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
 ## Main building blocks
  * Spring Boot
