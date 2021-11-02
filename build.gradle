@@ -18,6 +18,7 @@ buildscript {
 allprojects {
     apply from: "${rootProject.projectDir}/repositories.gradle"
     apply plugin: 'java'
+    apply plugin: 'jacoco'
 }
 
 apply plugin: 'org.springframework.boot'
@@ -39,4 +40,13 @@ dependencies {
 
 springBoot {
     mainClassName = "by.andd3dfx.auth.AuthServerApp"
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    reports {
+        csv.enabled true
+    }
 }
