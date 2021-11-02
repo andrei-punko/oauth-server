@@ -21,11 +21,11 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByLogin(username);
 
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("The username %s doesn't exist", s));
+            throw new UsernameNotFoundException(String.format("The username=%s doesn't exist", username));
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
