@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class AppUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,9 +33,7 @@ public class AppUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
 
-        UserDetails userDetails = new org.springframework.security.core.userdetails.
+        return new org.springframework.security.core.userdetails.
             User(user.getLogin(), user.getPassword(), authorities);
-
-        return userDetails;
     }
 }

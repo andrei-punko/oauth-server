@@ -17,6 +17,9 @@ public class MainController {
 
     private Map<Object, String> nodeMap = new ConcurrentHashMap<>();
 
+    @Value("${auth.profile}")
+    private String authProfile;
+
     public void setNode(String node) {
         if (node == null) {
             node = "";
@@ -25,15 +28,6 @@ public class MainController {
         SecurityContext context = SecurityContextHolder.getContext();
         nodeMap.put(((WebAuthenticationDetails)context.getAuthentication().getDetails()).getRemoteAddress(), node);
     }
-
-    private String getNode() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        String node = nodeMap.get(((WebAuthenticationDetails)context.getAuthentication().getDetails()).getRemoteAddress());
-        return (node != null) ? node.toLowerCase() : "";
-    }
-
-    @Value("${auth.profile}")
-    private String authProfile;
 
     @GetMapping("/login")
     public String login(@RequestParam Map<String,String> allParams, Model model) {
@@ -57,5 +51,14 @@ public class MainController {
             return "ott-";
         }
         return "";
+    }
+
+    private String getNode() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        String node = nodeMap.get(((WebAuthenticationDetails)context.getAuthentication().getDetails()).getRemoteAddress());
+        if (node == null) {
+            return "";
+        }
+        return node.toLowerCase();
     }
 }

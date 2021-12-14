@@ -20,13 +20,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AppUserDetailsServiceTest {
+public class UserDetailsServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
 
     @InjectMocks
-    private AppUserDetailsService service;
+    private UserDetailsServiceImpl service;
 
     @Test
     public void loadUserByUsername() {
