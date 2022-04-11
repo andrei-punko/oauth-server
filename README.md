@@ -23,10 +23,12 @@ java -jar ./build/libs/auth-server-0.1-SNAPSHOT.jar --auth.profile=ott
 ```
 
 Or import the project into your IDE and run `AuthServerApplication` from there.
-Application starting with `auth.profile=ott` by default
+Application starts with `auth.profile=ott` by default
 
-Or use docker compose:  
-`docker-compose up`
+Or use docker compose:
+```
+docker-compose up
+```
 
 ## To test the application
 
@@ -44,11 +46,11 @@ Put `bob/ott` login/password pair into form and click `Approve`
 
 (The login/password pairs populated into in-memory DB H2. For details check sql scripts in resources folder if needed)
 
-After some delay (due to redirection to some fake unexisting resource localhost:9191) you get string like next in browser address field:
+After some delay (due to redirection to some fake non-existing resource localhost:9191) you get string like next in browser address field:
 http://localhost:9191/x?code=qjGBjC
 Get code `qjGBjC` for future reuse in next actions
 
-### Generate an access token
+### Generate access token
 
 Use the following generic command to generate an access token:
 
@@ -135,10 +137,9 @@ You'll receive a response similar to below
 
 ```
 
-### Use tokens to access resources through your RESTful API
+### Use tokens to access resources through your REST-ful API
 
 Use the generated tokens as the value of the Bearer in the Authorization header as follows:
-
 ```bash
 curl http://localhost:9091/YOUR_RESOURCE_PATH -H "Authorization: Bearer ACCESS_TOKEN_HERE"
 ```
