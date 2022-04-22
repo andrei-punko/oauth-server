@@ -15,7 +15,7 @@ security:
     client-id: entitlements
     client-secret: ${auth.profile}
     expiration-mins: 1440
-    grant-types: password,refresh_token,authorization_code
+    grant-types: password,refresh_token,authorization_code,client_credentials
     resource-ids: users,subscriptions
     scopes: read
     redirect-uris: http://localhost
