@@ -29,7 +29,9 @@ public class CustomTokenEnhancer implements TokenEnhancer {
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         User user = userRepository.findByLogin(authentication.getName());
         Map<String, Object> additionalInfo = new HashMap<>();
-        additionalInfo.put("non_pii_id", user.getNonPiiId());
+        if (user != null) {
+            additionalInfo.put("non_pii_id", user.getNonPiiId());
+        }
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         Date expirationDate = Date.from(Instant.now().plus(expirationMins, MINUTES));
         ((DefaultOAuth2AccessToken) accessToken).setExpiration(expirationDate);
