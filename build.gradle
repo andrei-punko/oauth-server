@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        spring_boot_version = '2.2.5.RELEASE'
+        spring_boot_version = '2.5.12'
         spring_boot_gradle_plugin_version = spring_boot_version
     }
 
@@ -36,6 +36,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2:1.4.197'
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
+    testCompileOnly "junit:junit:4.13.2"
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.1'
 }
 
 springBoot {
@@ -47,7 +49,7 @@ test {
 }
 jacocoTestReport {
     reports {
-        csv.enabled true
+        csv.required = true
     }
 	afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
