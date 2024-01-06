@@ -1,13 +1,12 @@
 buildscript {
     ext {
-        spring_boot_version = '2.5.12'
+        spring_boot_version = '2.5.14'
         spring_boot_gradle_plugin_version = spring_boot_version
     }
 
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
@@ -23,6 +22,8 @@ allprojects {
 
 apply plugin: 'org.springframework.boot'
 
+sourceCompatibility = JavaVersion.VERSION_17
+
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
     implementation "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
@@ -30,32 +31,52 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf:$spring_boot_version"
     implementation "org.springframework.boot:spring-boot-starter-actuator:$spring_boot_version"
-    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE"
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.5.RELEASE"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.3'
 
     runtimeOnly 'com.h2database:h2:1.4.197'
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:$spring_boot_version"
     testCompileOnly "junit:junit:4.13.2"
-    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.1'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.2'
 }
 
 springBoot {
-    mainClassName = "by.andd3dfx.auth.AuthServerApp"
+    mainClass = "by.andd3dfx.auth.AuthServerApp"
 }
 
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+tasks.withType(Test) {
+    testLogging {
+        events "passed", "skipped", "failed",
+                // "standardOut",   // Uncomment to get all logs during tests execution
+                "standardError"
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent)
+            println("${result.resultType} " +
+                    "(${result.testCount} tests, " +
+                    "${result.successfulTestCount} successes, " +
+                    "${result.failedTestCount} failures, " +
+                    "${result.skippedTestCount} skipped)")
+    }
+
+    finalizedBy jacocoTestReport    // report is always generated after tests run
+    jacoco {
+        destinationFile = layout.buildDirectory.file('jacoco/jacocoTest.exec').get().asFile
+        classDumpDir = layout.buildDirectory.dir('jacoco/classpathdumps').get().asFile
+    }
 }
+
 jacocoTestReport {
     reports {
         csv.required = true
     }
-	afterEvaluate {
+    afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
                     '**/config/**',
                     '**/domain/**',
+                    '**/dto/**',
             ])
         }))
     }
