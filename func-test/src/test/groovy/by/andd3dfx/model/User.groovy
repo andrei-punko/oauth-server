@@ -1,10 +1,10 @@
 package by.andd3dfx.model
 
 class User {
-    def name
-    def password
+    String name
+    String password
 
-    User(name, password) {
+    User(String name, String password) {
         this.name = name
         this.password = password
     }

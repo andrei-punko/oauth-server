@@ -6,8 +6,10 @@ import by.andd3dfx.model.User
 class Configuration {
     private static final String host = "localhost"
 
-    public static final Role ottRole = new Role('OTT', "http://$host:9090", 'entitlements', 'ott')
-    public static final Role mvpdRole = new Role('MVPD', "http://$host:9095", 'entitlements', 'mvpd')
+    public static final Role ottRole = new Role(
+            'OTT', "http://$host:9090", 'entitlements', 'ott')
+    public static final Role mvpdRole = new Role(
+            'MVPD', "http://$host:9095", 'entitlements', 'mvpd')
 
     public static final User ottAlice = new User('alice', 'ott')
     public static final User ottBob = new User('bob', 'ott')
