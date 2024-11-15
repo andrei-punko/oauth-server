@@ -6,7 +6,7 @@
 
 ## Prerequisites
 - Maven 3
-- JDK 17
+- JDK 21
 
 Use https://jwt.io to decode your generated token  
 Use https://base64encode.org to encode/decode to/from Base64
