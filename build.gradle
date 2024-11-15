@@ -22,7 +22,9 @@ allprojects {
 
 apply plugin: 'org.springframework.boot'
 
-sourceCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
