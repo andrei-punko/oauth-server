@@ -2,7 +2,6 @@
 
 ![Java CI with Gradle](https://github.com/andrei-punko/oauth-server/workflows/Java%20CI%20with%20Gradle/badge.svg)
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/andrei-punko/oauth-server/actions/workflows/gradle.yml)
-[![Branches](.github/badges/branches.svg)](https://github.com/andrei-punko/oauth-server/actions/workflows/gradle.yml)
 
 ## Prerequisites
 
